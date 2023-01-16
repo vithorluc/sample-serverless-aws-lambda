@@ -3,19 +3,6 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: us-west-1
-  # vpc:
-  #   securityGroupIds:
-  #     - HERE_YOUR_SECURITY_GROUP
-  #   subnetIds:
-  #     - HERE_YOUR_SUBNET_1
-  #     - HERE_YOUR_SUBNET_2
-  #     - HERE_YOUR_SUBNET_3
-  # environment:
-  #   MYSQLHOST: 'xxxxx.rds.amazonaws.com'
-  #   MYSQLPORT: 'xxx'
-  #   MYSQLUSER: 'xxx'
-  #   MYSQLPASS: 'xxxxx'
-  #   MYSQLDATABASE: 'xxxx'
 functions:
   hello:
     handler: src/api/handlers/hello.handler
@@ -46,3 +33,8 @@ resources:
       Properties:
         DisplayName: Question Event Topic
         TopicName: question-event
+environment:
+  DB_HOST: ${param:DB_HOST}
+  DB_NAME: ${param:DB_NAME}
+  DB_PASSWORD: ${param:DB_PASSWORD}
+  DB_USERNAME: ${param:DB_USERNAME}
