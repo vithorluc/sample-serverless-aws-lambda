@@ -1,0 +1,50 @@
+service: serverlessSetup
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-1
+
+functions:
+  hello:
+    handler: src/functions/hello.handler
+    events: 
+      - http:
+          path: serverlessSetup/hello
+          method: get
+  goodbye:
+    handler: src/functions/goodbye.handler
+    events:
+      - http:
+          path: serverlessSetup/goodbye
+          method: post
+  question:
+    handler: src/functions/question.handler
+    dependsOn: SNSQuestionEvent
+    events:
+      - sns:
+          arn: !Ref SNSQuestionEvent
+          topicName: hello-event
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+resources:
+  Resources:
+    SNSQuestionEvent:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: Question Event Topic
+        TopicName: question-event
+#  DatabaseName:
+#     Type: AWS::RDS::DBInstance
+#     Properties:
+#       AllocatedStorage: 20
+#       DBInstanceClass: db.t3.micro
+#       DBInstanceIdentifier: songs-database
+#       PubliclyAccessible: true
+#       StorageType: gp2
+#       MasterUsername: xxx # change
+#       MasterUserPassword: yyy # change
+#       Engine: mysql
+#       EngineVersion: 8.0.28
