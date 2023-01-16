@@ -23,7 +23,7 @@ export const handler: APIGatewayProxyHandler = async (
   try {
     const response = {
       statusCode: 200,
-      body: "HELLO YOU ARE MY FRIEND!!!",
+      body: "HELLO YOU ARE MY ENEMY!!!",
     };
 
     callback(null, success(response));

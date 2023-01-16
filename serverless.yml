@@ -32,9 +32,9 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         DisplayName: Question Event Topic
-        TopicName: question-event
-environment:
-  DB_HOST: ${param:DB_HOST}
-  DB_NAME: ${param:DB_NAME}
-  DB_PASSWORD: ${param:DB_PASSWORD}
-  DB_USERNAME: ${param:DB_USERNAME}
+        TopicName: question-prod-event
+# environment:
+#   DB_HOST: ${param:DB_HOST}
+#   DB_NAME: ${param:DB_NAME}
+#   DB_PASSWORD: ${param:DB_PASSWORD}
+#   DB_USERNAME: ${param:DB_USERNAME}

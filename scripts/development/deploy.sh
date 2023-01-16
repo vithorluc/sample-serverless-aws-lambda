@@ -15,7 +15,7 @@ if [ $? -ne 0 ]; then
 else
   echo "Tests passed, deploying"
   # Run the serverless deploy command with the --stage option set to the value of the argument
-  cd ../../src && serverless deploy --stage "$STAGE"
+  cd ../../ && serverless deploy --stage "$STAGE"
 fi
 
 	
