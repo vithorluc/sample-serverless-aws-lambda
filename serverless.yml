@@ -5,7 +5,7 @@ provider:
   region: us-west-1
   # vpc:
   #   securityGroupIds:
-  #     - HERE_YOUR_SECURITY_GROUP 
+  #     - HERE_YOUR_SECURITY_GROUP
   #   subnetIds:
   #     - HERE_YOUR_SUBNET_1
   #     - HERE_YOUR_SUBNET_2

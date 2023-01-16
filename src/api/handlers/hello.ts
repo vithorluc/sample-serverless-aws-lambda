@@ -1,16 +1,37 @@
-import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import {
+  APIGatewayProxyHandler,
+  APIGatewayProxyEvent,
+  APIGatewayProxyResult,
+  Context,
+  Callback,
+} from "aws-lambda";
 
-export const handler: APIGatewayProxyHandler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+const success = (response: any) => ({
+  statusCode: 200,
+  body: JSON.stringify(response),
+});
+
+const error = (err: any) => ({
+  statusCode: 400,
+  body: JSON.stringify(err),
+});
+export const handler: APIGatewayProxyHandler = async (
+  _event: APIGatewayProxyEvent,
+  context: Context,
+  callback: Callback
+): Promise<APIGatewayProxyResult> => {
   try {
     const response = {
       statusCode: 200,
-      body: 'HELLO YOU ARE MY FRIEND!!!',
+      body: "HELLO YOU ARE MY FRIEND!!!",
     };
+
+    callback(null, success(response));
+
     return response;
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: 'An error occured',
-    };
+  } catch (err: any) {
+    callback(err);
+
+    return err;
   }
 };
